@@ -9,7 +9,7 @@ const Home = () => {
   const fetchWeatherInfo = async (city: string) => {
     try {
       const response = await fetch(
-        `http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=5&appid=${apiKey}`
+        `http://api.openweathermap.org/geo/1.0/direct?q=${city}&appid=${apiKey}`
       );
       if (response.ok) {
         const data = await response.json();
@@ -29,7 +29,7 @@ const Home = () => {
     <Container>
       <Row className="mt-5 justify-content-center">
         <h1 className="text-light">
-          <strong>Hello Arian, Discover the weather</strong>
+          <strong>Discover the weather</strong>
         </h1>
         <Col xs={12} md={12} lg={8}>
           <Form>
@@ -37,7 +37,7 @@ const Home = () => {
               <Form.Control
                 className="rounded-pill mt-2"
                 type="search"
-                placeholder="Search herre..."
+                placeholder="Search by city..."
                 value={city}
                 onChange={(e) => setCity(e.target.value)}
               />

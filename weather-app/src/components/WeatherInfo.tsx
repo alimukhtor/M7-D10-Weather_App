@@ -11,12 +11,13 @@ const WeatherInfo =({weather}:WeatherInfoProps)=> {
     const [forecast, setForecast] = useState<Forecast[]>([])
     const apiKey: any = "2e9b02965350b65e7874cee2f70d914e";
 
-    const fetchForecast =async({weather}:WeatherInfoProps)=> {
-        const response = await fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${weather.lat}&lon=${weather.lon}&exclude=hourly,daily&appid=${apiKey}`)
+    const fetchForecast = async({weather}:WeatherInfoProps)=> {
+        const response = await fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${weather.lat}&lon=${weather.lon}&exclude=minutely&appid=${apiKey}`)
         if(response.ok){
             const data = await response.json()
             console.log("Forecast:", data);
-            setForecast(data)
+            let onlineForecast: Forecast[] = data.onlineForecast
+            setForecast(onlineForecast)
             
         }
     }
@@ -26,18 +27,15 @@ const WeatherInfo =({weather}:WeatherInfoProps)=> {
     return(
         <>
         {
-            forecast.map(fore=> (
-                <>
-            <Card.Body className="">
+            // forecast.map(fore => (
+            <Card.Body>
               <Card.Title>{weather.name}</Card.Title>
               <Card.Text>
                 {/* {fore.current.weather[0].main} */}
               </Card.Text>
-              <Button variant="primary"></Button>
             </Card.Body>
 
-        </>
-            ))
+            // ))
         }
         </>
     )
