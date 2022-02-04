@@ -1,7 +1,10 @@
 .App {
   text-align: center;
 }
-*{
+body{
   background-color:#282c34;
 }
 
+.ali{
+  background-color: #6151C3;
+}
