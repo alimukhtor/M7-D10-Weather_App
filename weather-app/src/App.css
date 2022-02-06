@@ -8,3 +8,9 @@ body{
 .ali{
   background-color: #6151C3;
 }
+
+/* .forecast{
+  display: flex;
+  flex-direction: row;
+  justify-content:right
+} */

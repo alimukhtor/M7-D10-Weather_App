@@ -45,15 +45,9 @@ const Home = () => {
           </Form>
         </Col>
       </Row>
-      <Row className="justify-content-center">
-        <Col xs={12} md={12} lg={8}>
-          <Card className="mt-5 ali text-light">
-            {weatherInfo.map((weather) => (
-             <WeatherInfo weather={weather}/>
-            ))}
-          </Card>
-        </Col>
-      </Row>
+        {weatherInfo.map((weather) => (
+          <WeatherInfo weather={weather}/>
+        ))}
     </Container>
   );
 };

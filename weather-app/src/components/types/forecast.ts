@@ -85,7 +85,9 @@ export interface Daily {
     rain:       number;
     uvi:        number;
     snow?:      number;
+    
 }
+
 
 export interface FeelsLike {
     day:   number;
