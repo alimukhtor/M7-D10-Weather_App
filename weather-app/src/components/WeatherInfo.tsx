@@ -27,9 +27,9 @@ const WeatherInfo = ({ weather }: WeatherInfoProps) => {
   }, []);
   return (
     <Row className="px-3">
-      {forecast.map((fore) => (
-        <Col xs={12} md={5} lg={4}>
-          <Card className="mt-5 ali text-light">
+      {forecast.map((fore, i) => (
+        <Col xs={12} md={5} lg={3}>
+          <Card className="mt-5 ali text-light" key={i}>
             <Card.Img src={logo} />
             <Card.Body>
               <Card.Title className="d-flex justify-content-start">

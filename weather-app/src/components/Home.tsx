@@ -45,8 +45,8 @@ const Home = () => {
           </Form>
         </Col>
       </Row>
-        {weatherInfo.map((weather) => (
-          <WeatherInfo weather={weather}/>
+        {weatherInfo.map((weather, i) => (
+          <WeatherInfo weather={weather} key={i}/>
         ))}
     </Container>
   );
