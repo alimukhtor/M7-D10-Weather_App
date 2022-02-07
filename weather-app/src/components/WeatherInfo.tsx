@@ -1,4 +1,4 @@
-import { Container, Row, Col, Form, Card, Button } from "react-bootstrap";
+import { Row, Col, Card } from "react-bootstrap";
 import { IWeather } from "./types/weather";
 import { Forecast } from "./types/forecast";
 import logo from "../assets/images/pic.png";
@@ -18,7 +18,7 @@ const WeatherInfo = ({ weather }: WeatherInfoProps) => {
     if (response.ok) {
       const data = (await response.json()) as Forecast;
       console.log("Forecast:", data);
-      let onlineForecast = data.daily
+      let onlineForecast = data.daily;
       setForecast(onlineForecast);
     }
   };
@@ -35,7 +35,9 @@ const WeatherInfo = ({ weather }: WeatherInfoProps) => {
               <Card.Title className="d-flex justify-content-start">
                 {weather.name}
               </Card.Title>
-              <Card.Text className="d-flex justify-content-end">{fore.weather[0].main}</Card.Text>
+              <Card.Text className="d-flex justify-content-end">
+                {fore.weather[0].main}
+              </Card.Text>
               {/* <Card.Text className="d-flex justify-content-end">{fore.alerts[0].description}</Card.Text> */}
               <Card.Text className="d-flex justify-content-start">
                 Morning: {fore.temp.day} C
