@@ -9,7 +9,7 @@ const Home = () => {
   const fetchWeatherInfo = async (city: string) => {
     try {
       const response = await fetch(
-        `http://api.openweathermap.org/geo/1.0/direct?q=${city}&appid=${apiKey}`
+        `https://api.openweathermap.org/geo/1.0/direct?q=${city}&appid=${apiKey}`
       );
       if (response.ok) {
         const data = await response.json();
