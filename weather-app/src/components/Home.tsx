@@ -1,11 +1,11 @@
-import { Container, Row, Col, Form, Card, Button } from "react-bootstrap";
+import { Container, Row, Col, Form } from "react-bootstrap";
 import { useState, useEffect } from "react";
 import { IWeather } from "./types/weather";
 import WeatherInfo from "./WeatherInfo";
 const Home = () => {
   const [city, setCity] = useState("");
   const [weatherInfo, setWeatherInfo] = useState<IWeather[]>([]);
-  const apiKey: any = "2e9b02965350b65e7874cee2f70d914e";
+  const apiKey: string = "2cd527ed535b15c100079b82e1735bea";
   const fetchWeatherInfo = async (city: string) => {
     try {
       const response = await fetch(
@@ -13,7 +13,7 @@ const Home = () => {
       );
       if (response.ok) {
         const data = await response.json();
-        console.log("data", data);
+        console.log("Info", data);
         setWeatherInfo(data);
       }
     } catch (error) {

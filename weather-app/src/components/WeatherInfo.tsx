@@ -9,7 +9,7 @@ interface WeatherInfoProps {
 
 const WeatherInfo = ({ weather }: WeatherInfoProps) => {
   const [forecast, setForecast] = useState<Forecast["daily"]>([]);
-  const apiKey: any = "2e9b02965350b65e7874cee2f70d914e";
+  const apiKey: string = "2cd527ed535b15c100079b82e1735bea";
 
   const fetchForecast = async ({ weather }: WeatherInfoProps) => {
     const response = await fetch(
@@ -24,13 +24,13 @@ const WeatherInfo = ({ weather }: WeatherInfoProps) => {
   };
   useEffect(() => {
     fetchForecast({ weather });
-  }, []);
+  }, [weather]);
   return (
     <Row className="px-3">
       {forecast.map((fore, i) => (
         <Col xs={12} md={5} lg={3}>
           <Card className="mt-5 ali text-light" key={i}>
-            <Card.Img src={logo} />
+            <Card.Img src={`http://openweathermap.org/img/w/${fore.weather[0].icon}.png`} className="asd"/>
             <Card.Body>
               <Card.Title className="d-flex justify-content-start">
                 {weather.name}
@@ -38,7 +38,6 @@ const WeatherInfo = ({ weather }: WeatherInfoProps) => {
               <Card.Text className="d-flex justify-content-end">
                 {fore.weather[0].main}
               </Card.Text>
-              {/* <Card.Text className="d-flex justify-content-end">{fore.alerts[0].description}</Card.Text> */}
               <Card.Text className="d-flex justify-content-start">
                 Morning: {fore.temp.day} C
               </Card.Text>
