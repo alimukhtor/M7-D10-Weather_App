@@ -26,53 +26,52 @@ const WeatherInfo = ({ weather }: WeatherInfoProps) => {
     fetchForecast({ weather });
   }, [weather]);
   return (
-    // <Row className="px-3">
-    //   {forecast.map((fore, i) => (
-    //     <Col xs={12} md={5} lg={3}>
-    //       <Card className="mt-5 ali text-light" key={i}>
-    //         <Card.Img src={`http://openweathermap.org/img/w/${fore.weather[0].icon}.png`} className="asd"/>
-    //         <Card.Body>
-    //           <Card.Title className="d-flex justify-content-start">
-    //             {weather.name}
-    //           </Card.Title>
-    //           <Card.Text className="d-flex justify-content-end">
-    //             {fore.weather[0].main}
-    //           </Card.Text>
-    //           <Card.Text className="d-flex justify-content-start">
-    //             Morning: {fore.temp.day} C
-    //           </Card.Text>
-    //         </Card.Body>
-    //       </Card>
-    //     </Col>
-    //   ))}
-    // </Row>
-
     <Container>
-      <h3 className="mt-5 text-light">{weather.name}</h3>
-      {forecast.map((detail) => (
-        <Row>
-          <Col md={4}>
+      <h3 className="my-5 text-light">{weather.name}</h3>
+      <Row className="mb-5">
+        {forecast.slice(0, 1).map((current) => (
+          <>
+            <Col md={4}>
+              <img
+                src={`http://openweathermap.org/img/w/${current.weather[0].icon}.png`}
+                alt="icon"
+                style={{ width: "250px", height: "250px" }}
+              />
+              <p className="text-light mb-5" style={{ fontSize: "30px" }}>
+                <strong>{current.weather[0].main}</strong>
+              </p>
+            </Col>
+            <Col md={4}>
+              <h3 className="text-light temp" style={{ fontSize: "55px" }}>
+                {current.temp.day}&deg; C
+              </h3>
+            </Col>
+            <Col md={4}>
+              <div className="text-light details">
+                <p>Description : {current.weather[0].description}</p>
+                <p>Wind_Speed : {current.wind_speed}kmph</p>
+                <p>Pressure : {current.pressure}mb</p>
+              </div>
+            </Col>
+          </>
+        ))}
+      </Row>
+
+      <Row className="rows">
+        {forecast.slice(0, 6).map((detail) => (
+          <Col md={2}>
+            <h6 className="text-light">SAT</h6>
             <img
               src={`http://openweathermap.org/img/w/${detail.weather[0].icon}.png`}
               alt="icon"
-              style={{ width: "200px", height: "200px" }}
+              style={{ width: "100px", height: "100px" }}
             />
-            <p className="text-light">
-              <strong>{detail.weather[0].main}</strong>
-            </p>
+            <h3 className="text-light m-5" style={{ fontSize: "15px" }}>
+              {detail.temp.day}&deg; C
+            </h3>
           </Col>
-          <Col md={4}>
-            <h3 className="text-light temp">{detail.temp.day}&deg; C</h3>
-          </Col>
-          <Col md={4}>
-            <div className="text-light details">
-              <p>Description : {detail.weather[0].description}</p>
-              <p>Wind_Speed : {detail.wind_speed}kmph</p>
-              <p>Pressure : {detail.pressure}mb</p>
-            </div>
-          </Col>
-        </Row>
-      ))}
+        ))}
+      </Row>
     </Container>
   );
 };
