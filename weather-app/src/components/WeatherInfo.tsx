@@ -74,7 +74,7 @@ const WeatherInfo = ({ weather }: WeatherInfoProps) => {
           var dayName = days[d.getDay()];
           console.log("MyDays",dayName);
           return(
-          <Col xs={3} md={2}>
+          <Col xs={6} md={2}>
             <h6 className="text-light">
               <span className="text-info">{dayName}</span>
             </h6>
