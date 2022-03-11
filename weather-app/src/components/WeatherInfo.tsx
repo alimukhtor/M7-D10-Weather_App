@@ -27,7 +27,7 @@ const WeatherInfo = ({ weather }: WeatherInfoProps) => {
   }, [weather]);
   return (
     <Container>
-      <h3 className="my-3 text-info">{weather.name}</h3>
+      <h3 className="mt-5 text-info">{weather.name}</h3>
       <Row className="mb-5">
         {forecast.slice(0, 1).map((current) => (
           <>
@@ -58,7 +58,7 @@ const WeatherInfo = ({ weather }: WeatherInfoProps) => {
       </Row>
 
       <Row>
-        {forecast.slice(0, 7).map((detail, index) => {
+        {forecast.slice(0, 7).map((detail) => {
           let days = [
             "Sunday",
             "Monday",
