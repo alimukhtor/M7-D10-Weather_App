@@ -1,5 +1,6 @@
 import { Container, Row, Col, Form } from "react-bootstrap";
 import { useState, useEffect } from "react";
+import { TiWeatherStormy } from "react-icons/ti";
 import { IWeather } from "./types/weather";
 import WeatherInfo from "./WeatherInfo";
 const Home = () => {
@@ -29,7 +30,7 @@ const Home = () => {
     <Container>
       <Row className="mt-5 justify-content-center">
         <h1 className="text-light">
-          <strong>Discover the weather</strong>
+          <strong>Discover the weather <TiWeatherStormy className="text-info"/></strong>
         </h1>
         <Col xs={12} md={12} lg={8}>
           <Form>
@@ -37,7 +38,7 @@ const Home = () => {
               <Form.Control
                 className="rounded-pill mt-2"
                 type="search"
-                placeholder="Search by city..."
+                placeholder="search by city, country..."
                 value={city}
                 onChange={(e) => setCity(e.target.value)}
               />

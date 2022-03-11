@@ -1,8 +1,9 @@
 import { Row, Col, Card, Container } from "react-bootstrap";
 import { IWeather } from "./types/weather";
 import { Forecast } from "./types/forecast";
-import logo from "../assets/images/pic.png";
+
 import { useState, useEffect } from "react";
+import WeekDays from "./WeekDays";
 interface WeatherInfoProps {
   weather: IWeather;
 }
@@ -10,7 +11,7 @@ interface WeatherInfoProps {
 const WeatherInfo = ({ weather }: WeatherInfoProps) => {
   const [forecast, setForecast] = useState<Forecast["daily"]>([]);
   const apiKey: string = "2cd527ed535b15c100079b82e1735bea";
-
+  let fday = "";
   const fetchForecast = async ({ weather }: WeatherInfoProps) => {
     const response = await fetch(
       `https://api.openweathermap.org/data/2.5/onecall?lat=${weather.lat}&lon=${weather.lon}&units=metric&exclude=minutely,alert&appid=${apiKey}`
@@ -27,7 +28,7 @@ const WeatherInfo = ({ weather }: WeatherInfoProps) => {
   }, [weather]);
   return (
     <Container>
-      <h3 className="my-5 text-light">{weather.name}</h3>
+      <h3 className="my-3 text-info">{weather.name}</h3>
       <Row className="mb-5">
         {forecast.slice(0, 1).map((current) => (
           <>
@@ -57,15 +58,24 @@ const WeatherInfo = ({ weather }: WeatherInfoProps) => {
         ))}
       </Row>
 
-      <Row className="rows">
-        {forecast.slice(0, 6).map((detail) => (
+      <Row>
+        {forecast.slice(0, 6).map((detail, index) => (
+          // if (index > 0) {
+          //   let dayname = new Date(detail.dt * 1000).toLocaleDateString("en", {
+          //     weekday: "long",
+          //   });
+          //   let temp = detail.temp.day.toFixed(0);
+          // }
           <Col md={2}>
-            <h6 className="text-light">SAT</h6>
+            <h6 className="text-light"><WeekDays detail={detail} index={index}/></h6>
             <img
               src={`http://openweathermap.org/img/w/${detail.weather[0].icon}.png`}
               alt="icon"
               style={{ width: "100px", height: "100px" }}
             />
+            <p className="text-light mb-5" style={{ fontSize: "15px" }}>
+              <strong>{detail.weather[0].main}</strong>
+            </p>
             <h3 className="text-light m-5" style={{ fontSize: "15px" }}>
               {detail.temp.day}&deg; C
             </h3>
