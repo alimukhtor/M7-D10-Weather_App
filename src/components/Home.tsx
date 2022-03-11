@@ -38,7 +38,7 @@ const Home = () => {
               <Form.Control
                 className="rounded-pill mt-2"
                 type="search"
-                placeholder="search by city, country..."
+                placeholder="search by city..."
                 value={city}
                 onChange={(e) => setCity(e.target.value)}
               />
