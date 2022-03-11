@@ -1,17 +1,16 @@
-import { Row, Col, Card, Container } from "react-bootstrap";
+import { Row, Col, Container } from "react-bootstrap";
 import { IWeather } from "./types/weather";
 import { Forecast } from "./types/forecast";
 
 import { useState, useEffect } from "react";
-import WeekDays from "./WeekDays";
 interface WeatherInfoProps {
   weather: IWeather;
 }
 
 const WeatherInfo = ({ weather }: WeatherInfoProps) => {
   const [forecast, setForecast] = useState<Forecast["daily"]>([]);
+
   const apiKey: string = "2cd527ed535b15c100079b82e1735bea";
-  let fday = "";
   const fetchForecast = async ({ weather }: WeatherInfoProps) => {
     const response = await fetch(
       `https://api.openweathermap.org/data/2.5/onecall?lat=${weather.lat}&lon=${weather.lon}&units=metric&exclude=minutely,alert&appid=${apiKey}`
@@ -59,15 +58,24 @@ const WeatherInfo = ({ weather }: WeatherInfoProps) => {
       </Row>
 
       <Row>
-        {forecast.slice(0, 6).map((detail, index) => (
-          // if (index > 0) {
-          //   let dayname = new Date(detail.dt * 1000).toLocaleDateString("en", {
-          //     weekday: "long",
-          //   });
-          //   let temp = detail.temp.day.toFixed(0);
-          // }
+        {forecast.slice(0, 7).map((detail, index) => {
+          let days = [
+            "Sunday",
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+          ];
+          var d = new Date(detail.dt * 1000);
+          var dayName = days[d.getDay()];
+          console.log("MyDays",dayName);
+          return(
           <Col md={2}>
-            <h6 className="text-light"><WeekDays detail={detail} index={index}/></h6>
+            <h6 className="text-light">
+              <span className="text-info">{dayName}</span>
+            </h6>
             <img
               src={`http://openweathermap.org/img/w/${detail.weather[0].icon}.png`}
               alt="icon"
@@ -80,7 +88,8 @@ const WeatherInfo = ({ weather }: WeatherInfoProps) => {
               {detail.temp.day}&deg; C
             </h3>
           </Col>
-        ))}
+          )
+        })}
       </Row>
     </Container>
   );
