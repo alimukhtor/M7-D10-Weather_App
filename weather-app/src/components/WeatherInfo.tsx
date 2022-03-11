@@ -29,9 +29,11 @@ const WeatherInfo = ({ weather }: WeatherInfoProps) => {
     <Container>
       <h3 className="mt-5 text-info">{weather.name}</h3>
       <Row className="mb-5">
+      
         {forecast.slice(0, 1).map((current) => (
           <>
-            <Col md={4}>
+            <Col xs={12} md={4}>
+          <h3 className="mt-5 text-light">Today</h3>
               <img
                 src={`http://openweathermap.org/img/w/${current.weather[0].icon}.png`}
                 alt="icon"
@@ -72,7 +74,7 @@ const WeatherInfo = ({ weather }: WeatherInfoProps) => {
           var dayName = days[d.getDay()];
           console.log("MyDays",dayName);
           return(
-          <Col md={2}>
+          <Col xs={3} md={2}>
             <h6 className="text-light">
               <span className="text-info">{dayName}</span>
             </h6>
